@@ -3,19 +3,21 @@
 
 class Button{
   
-  private:
+    private:
 
-  volatile bool state;
-  int pin;
-  String contactor;
-  int interrupt;
+    int buttonLogic;
+    volatile bool state;
+    int pin;
+    int interrupt;
 
-  public:
-  
-  Button(int pinNumber, String contactorOperation, int interruptNumber);
+    public:
 
-  void set();
-  void reset();
-  bool getState();
+    Button(int pinNumber, String contactorOperation, int interruptNumber);
+
+    int getLogic();
+
+    void setState();
+    void resetState();
+    bool getState();
 
 };
