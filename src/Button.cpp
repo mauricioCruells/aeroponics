@@ -7,16 +7,18 @@ Button::Button(int pinNumber, String contactorOperation, int interruptNumber){
     interrupt = interruptNumber;
 
     if (contactorOperation == "NO"){
-        buttonLogic = 0;
+        buttonLogic = FALLING;
     }
     else if (contactorOperation == "NC"){
-        buttonLogic = 1;
+        buttonLogic = RISING;
     }
-
 }
 
 int Button::getLogic(){
     return buttonLogic;
+}
+int Button::getInterrupt(){
+    return interrupt;
 }
 
 

@@ -15,6 +15,7 @@ class Button{
     Button(int pinNumber, String contactorOperation, int interruptNumber);
 
     int getLogic();
+    int getInterrupt();
 
     void setState();
     void resetState();
