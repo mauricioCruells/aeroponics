@@ -5,12 +5,13 @@ Button::Button(int pinNumber, String contactorOperation, int interruptNumber){
     pin = pinNumber;
     pinMode(pin, INPUT_PULLUP);
     interrupt = interruptNumber;
+    state = false;
 
     if (contactorOperation == "NO"){
-        buttonLogic = FALLING;
+        buttonLogic = 2; // 2 is equivalent to FALLING
     }
     else if (contactorOperation == "NC"){
-        buttonLogic = RISING;
+        buttonLogic = 3; // 3 is equivalent to RISING
     }
 }
 
