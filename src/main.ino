@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "Button.h"
+#include "Electrovalve.h"
 
 bool runFlag = false;
 bool autoFlag = false;
@@ -12,6 +13,9 @@ int autoManPosB = 10;
 Button green(2, "NO", 0); 
 Button red(3, "NC", 1);
 
+//Electrovalve init, pin number, on time, off time
+Electrovalve valve1(8, 2000, 2000);//5s --> 5000ms, 10s -->10000ms
+Electrovalve valve2(7, 2000, 2000);
 
 void setup() {
     //debugging
@@ -36,9 +40,25 @@ void loop() {
     if(manualFlag){
         if(runFlag){
             digitalWrite(LED_BUILTIN, HIGH);
+            valve1.setState(true);
+            valve2.setState(true);
         }
         else if (!runFlag){
             digitalWrite(LED_BUILTIN, LOW);
+            valve1.setState(false);
+            valve2.setState(false);
+        }
+    }
+    else if(autoFlag){
+        if(runFlag){
+            digitalWrite(LED_BUILTIN, HIGH);
+            valve1.Update();
+            valve2.Update();
+        }
+        else if(!runFlag){
+            digitalWrite(LED_BUILTIN, LOW);
+            valve1.setState(false);
+            valve2.setState(false);
         }
     }
 
